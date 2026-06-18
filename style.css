@@ -50,13 +50,6 @@ a {
     padding-bottom: 40px;
 }
 
-/* 마지막 CTA와 Footer를 한 화면에 자연스럽게 묶기 위함 */
-.snap-footer-wrapper {
-    padding-top: 0;
-    padding-bottom: 0;
-    justify-content: flex-end;
-}
-
 /* 1. Header */
 .header {
     position: fixed;
@@ -342,15 +335,33 @@ a {
 .faq-item[open] summary::after { content: "−"; }
 .faq-content { padding: 0 20px 20px 20px; color: #4a433d; font-size: 15px; font-weight: 500; }
 
-/* 10. Final Call to Action */
-.final-cta-section { position: relative; text-align: center; background-color: #fdfbf9; flex: 1; display: flex; align-items: center; overflow: hidden; }
+.final-cta-section {
+    position: relative;
+    text-align: center;
+    background-color: #fdfbf9;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;  
+    min-height: 100vh;     
+    overflow: hidden;
+    scroll-snap-align: start; 
+}
 .cta-background-glow { position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(circle, rgba(229, 185, 182, 0.5) 0%, transparent 70%); filter: blur(50px); }
 .final-cta-section h2 { font-size: 38px; font-weight: 900; margin-bottom: 16px; color: #1a1512; z-index: 2; position: relative;}
 .final-cta-section p { font-size: 18px; font-weight: 600; color: #4a433d; margin-bottom: 32px; z-index: 2; position: relative;}
 .final-qr-img { width: 140px; z-index: 2; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-radius: 16px; }
 
 /* 11. Footer */
-.footer { background-color: #f9f5f0; color: #8c7b6e; padding: 40px 20px; border-top: 2px solid #efeae4; width: 100%; }
+
+.footer {
+    background-color: #f9f5f0;
+    color: #8c7b6e;
+    padding: 60px 20px;
+    border-top: 2px solid #efeae4;
+    width: 100%;
+    scroll-snap-align: end; 
+}
 .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
 .footer-left { flex: 1; min-width: 300px; }
 .team-name { font-size: 26px; font-weight: 900; color: #1a1512; margin: 0 0 8px 0; letter-spacing: -0.5px; }
@@ -375,4 +386,24 @@ a {
     /* 모바일에서는 세로 길이가 길어져 스냅이 짤릴 수 있으므로 높이를 유동적으로 해제 */
     .snap-section { min-height: auto; scroll-snap-align: none; padding: 60px 0; }
     html { scroll-snap-type: none; }
+}
+
+.features-section {
+    background: linear-gradient(to bottom, #f5f0eb, #fdfbf9);
+    padding: 100px 0; /* 스냅이 없으므로 상하 여백을 충분히 주어 부드럽게 전환 */
+}
+
+.faq-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
+.faq-accordion {
+    max-width: 800px; 
+    margin: 0 auto;
 }

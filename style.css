@@ -6,7 +6,6 @@
     padding: 0;
 }
 
-/* 🚀 핵심: 풀페이지 스크롤 (Scroll Snapping) */
 html {
     scroll-snap-type: y mandatory; /* 스크롤 시 Y축으로 무조건 착! 붙게 설정 */
     scroll-behavior: smooth;
@@ -261,7 +260,13 @@ a {
 
 /* 5. Features Section */
 /* 풀스크린에 맞게 마진 조절 */
-.features-section { background: linear-gradient(to bottom, #f5f0eb, #fdfbf9); }
+.features-section {
+    background: linear-gradient(to bottom, #f5f0eb, #fdfbf9);
+    padding: 120px 0;
+    scroll-snap-align: start; 
+    min-height: auto; 
+    display: block; 
+}
 .feature-item { display: flex; align-items: center; justify-content: space-between; gap: 60px; margin-bottom: 40px; }
 .feature-item.reverse { flex-direction: row-reverse; }
 
@@ -326,7 +331,14 @@ a {
 .btn-price.btn-premium { background: linear-gradient(135deg, #cc8c56, #d68f89); color: #fff; }
 
 /* 9. FAQ Section */
-.faq-section { background-color: #f5f0eb; }
+.faq-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 100px 0;
+}
 .faq-accordion { max-width: 700px; margin: 0 auto; }
 .faq-item { background-color: #ffffff; border-radius: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(139, 120, 109, 0.08); overflow: hidden; border: 2px solid #efeae4; }
 .faq-item summary { padding: 20px; font-size: 16px; font-weight: 800; color: #1a1512; cursor: pointer; list-style: none; position: relative; }
@@ -343,24 +355,30 @@ a {
     flex-direction: column; 
     justify-content: center;
     align-items: center;  
-    min-height: 100vh;     
+    min-height: 100vh; 
     overflow: hidden;
     scroll-snap-align: start; 
 }
 .cta-background-glow { position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(circle, rgba(229, 185, 182, 0.5) 0%, transparent 70%); filter: blur(50px); }
 .final-cta-section h2 { font-size: 38px; font-weight: 900; margin-bottom: 16px; color: #1a1512; z-index: 2; position: relative;}
 .final-cta-section p { font-size: 18px; font-weight: 600; color: #4a433d; margin-bottom: 32px; z-index: 2; position: relative;}
-.final-qr-img { width: 140px; z-index: 2; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-radius: 16px; }
+.final-qr-img { 
+    width: 100px; 
+    z-index: 2; 
+    position: relative; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+    border-radius: 16px; 
+}
 
 /* 11. Footer */
 
 .footer {
     background-color: #f9f5f0;
     color: #8c7b6e;
-    padding: 60px 20px;
+    padding: 80px 20px;
     border-top: 2px solid #efeae4;
     width: 100%;
-    scroll-snap-align: end; 
+    scroll-snap-align: none; 
 }
 .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
 .footer-left { flex: 1; min-width: 300px; }

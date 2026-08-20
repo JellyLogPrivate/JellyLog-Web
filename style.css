@@ -367,12 +367,10 @@ a {
 /* 11. Footer */
 
 .footer {
-    scroll-snap-align: end; /* 푸터 바닥을 화면 바닥에 맞춤 */
+    scroll-snap-align: end; /* 푸터의 바닥이 화면 바닥에 딱 붙게 함 */
     background: #000;
     padding: 80px 24px;
     border-top: 1px solid var(--border);
-    /* CTA 섹션과 푸터 사이에 물리적인 간격을 주어 겹쳐 보이지 않게 함 */
-    margin-top: 0; 
 }
 
 .final-cta-section {

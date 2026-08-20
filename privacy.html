@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>젤리로그(JellyLog) 개인정보처리방침</title>
+    <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --container-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent: #48bb78;
+            --border-color: #e2e8f0;
+            --highlight-bg: #f0fff4;
+            --highlight-text: #276749;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-main: #e2e8f0;
+            --text-muted: #a0aec0;
+            --accent: #68d391;
+            --border-color: #2d3748;
+            --highlight-bg: #22543d;
+            --highlight-text: #9ae6b4;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 20px;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: var(--accent);
+            margin-top: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            color: var(--highlight-text);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+            color: var(--text-main);
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body data-theme="dark"> <!-- 앱 기획에 맞춰 야간(다크) 모드를 기본값으로 적용 -->
+    <div class="container">
+        <h1>젤리로그(JellyLog) 개인정보처리방침</h1>
+        <p>당사는 이용자의 마음속 깊은 이야기를 다루는 만큼 개인정보 보호를 최우선 가치로 삼고 있습니다. 젤리로그는 '개인정보 보호법' 등 관련 법령을 철저히 준수하여 이용자의 데이터를 안전하게 보호합니다.</p>
+        
+        <h2>1. 수집하는 개인정보의 항목 및 수집 방법</h2>
+        <p>회사는 개인화된 100% 공감 대화와 정서 분석 리포트 제공을 위해 최소한의 정보를 수집합니다.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>수집 항목</th>
+                    <th>수집 목적</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>필수 항목</strong></td>
+                    <td>이메일, 기기 식별값</td>
+                    <td>회원 가입 및 본인 식별</td>
+                </tr>
+                <tr>
+                    <td><strong>서비스 특화 항목</strong></td>
+                    <td><span class="highlight">대화 텍스트, 음성 입력 시 목소리 특징(높낮이, 속도 등), 캘린더 일정(연동 동의 시)</span></td>
+                    <td>선제적 안부 생성, 맥락 기반 장기 기억(RAG), 감정 리포트 생성 및 음성 분석을 통한 피로도/우울감 자가진단 지표 제공</td>
+                </tr>
+                <tr>
+                    <td><strong>자동 수집</strong></td>
+                    <td>접속 시간, 야간 모드 사용 이력, 접속 IP</td>
+                    <td>시간대(심야 등)에 따른 AI 톤앤매너 자동 조절 및 서비스 안정성 확보</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>2. 민감한 음성 데이터 및 대화 내용의 처리 원칙</h2>
+        <ul>
+            <li><strong>음성 데이터 원본 파기:</strong> 이용자가 대화 시 음성 입력을 사용할 경우, AI는 목소리의 톤, 빠르기 등 <span class="highlight">메타데이터(특징값)만을 추출한 직후 원본 오디오 파일은 서버에 저장하지 않고 즉시 영구 파기</span>합니다.</li>
+            <li><strong>대화 데이터 암호화:</strong> 사용자가 AI에게 털어놓은 모든 텍스트 대화, 자가진단 결과 및 고양이 화가 그림 결과물은 강력한 암호화 알고리즘을 통해 서버에 보관되며, 어떠한 외부 마케팅 용도로도 활용되거나 제3자에게 제공되지 않습니다.</li>
+        </ul>
+        
+        <h2>3. 개인정보의 보유 및 이용 기간</h2>
+        <p>이용자의 개인정보는 원칙적으로 서비스 목적이 달성되거나 <span class="highlight">회원 탈퇴 시 지체 없이 파기</span>됩니다. (단기적인 감정 휘발을 막고 '월간 감정 리포트' 트렌드를 제공하기 위해 계정 유지 기간 동안만 보관합니다.)</p>
+        <ul>
+            <li>단, 관계 법령(통신비밀보호법, 전자상거래법 등)에 의해 보존할 의무가 있는 접속 로그 등은 법정 기간 동안 별도 분리하여 보관합니다.</li>
+        </ul>
+        
+        <h2>4. 개인정보의 파기 절차 및 방법</h2>
+        <ul>
+            <li><strong>파기 절차:</strong> 이용자가 회원 탈퇴를 요청하거나, 캘린더 연동 및 데이터 제공 동의를 철회할 경우 해당 데이터는 즉시 파기 대상 목록으로 이관되어 파기됩니다.</li>
+            <li><strong>파기 방법:</strong> 
+                <ul>
+                    <li>전자적 파일(대화 히스토리, RAG 기억 데이터 베이스 등): 기록을 재생하거나 복구할 수 없는 기술적 방법(데이터 덮어쓰기 등)을 사용하여 완전히 삭제합니다.</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2>5. 이용자의 권리와 행사 방법</h2>
+        <ul>
+            <li>이용자는 앱 내 '설정' 메뉴를 통해 언제든지 자신의 대화 기록, 감정 타임라인, 캘린더 연동 내역을 조회하고 삭제할 수 있습니다.</li>
+            <li>서비스가 부담스럽거나 데이터 삭제를 원할 경우 앱 내에서 '회원 탈퇴' 버튼 클릭 한 번으로 모든 데이터를 파기하고 이용을 종료할 수 있습니다. (번거로운 이탈 방지 프로세스를 두지 않습니다.)</li>
+        </ul>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">☀️</button>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const btn = document.querySelector('.theme-toggle');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️';
+            }
+        }
+    </script>
+</body>
+</html>

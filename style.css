@@ -40,13 +40,10 @@ a {
 /* 🚀 각 챕터가 화면을 다 채우고 가운데 정렬되도록 하는 스냅 클래스 */
 .snap-section {
     scroll-snap-align: start;
-    scroll-snap-stop: always; /* 한 번 휠을 크게 굴려도 한 섹션씩만 멈추도록 강제 */
-    min-height: 100vh;
+    scroll-snap-stop: always;
+    min-height: 100vh; /* 이 높이가 CTA + Footer를 합친 높이가 됨 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 80px; /* 헤더 영역만큼 여백 확보 */
-    padding-bottom: 40px;
 }
 
 /* 1. Header */
@@ -378,8 +375,15 @@ a {
     padding: 80px 20px;
     border-top: 2px solid #efeae4;
     width: 100%;
-    scroll-snap-align: none; 
+    /* scroll-snap-align: start; */
 }
+.final-cta-section {
+    padding: 100px 0; /* 위아래 여백을 주어 중앙 정렬 효과 */
+    flex: 1; /* 남은 공간을 차지하도록 설정 */
+    display: flex;
+    align-items: center;
+}
+
 .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
 .footer-left { flex: 1; min-width: 300px; }
 .team-name { font-size: 26px; font-weight: 900; color: #1a1512; margin: 0 0 8px 0; letter-spacing: -0.5px; }

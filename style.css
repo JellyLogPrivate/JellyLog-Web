@@ -7,8 +7,8 @@
 }
 
 html {
-    scroll-snap-type: y mandatory; /* 스크롤 시 Y축으로 무조건 착! 붙게 설정 */
-    scroll-behavior: smooth;
+    scroll-snap-type: y proximity; /* mandatory에서 변경 */
+    scroll-behavior: smooth; 
     height: 100vh;
 }
 
@@ -40,10 +40,11 @@ a {
 /* 🚀 각 챕터가 화면을 다 채우고 가운데 정렬되도록 하는 스냅 클래스 */
 .snap-section {
     scroll-snap-align: start;
-    scroll-snap-stop: always;
-    min-height: 100vh; /* 이 높이가 CTA + Footer를 합친 높이가 됨 */
+    scroll-snap-stop: normal; /* always에서 normal로 변경하여 자연스럽게 통과 허용 */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 /* 1. Header */
@@ -345,17 +346,13 @@ a {
 .faq-content { padding: 0 20px 20px 20px; color: #4a433d; font-size: 15px; font-weight: 500; }
 
 .final-cta-section {
-    position: relative;
-    text-align: center;
-    background-color: #fdfbf9;
+    scroll-snap-align: start; /* 여기서 한 번 걸리게 함 */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; 
+    align-items: center;
     justify-content: center;
-    align-items: center;  
-    min-height: 100vh; 
-    overflow: hidden;
-    scroll-snap-align: start; 
 }
+
 .cta-background-glow { position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(circle, rgba(229, 185, 182, 0.5) 0%, transparent 70%); filter: blur(50px); }
 .final-cta-section h2 { font-size: 38px; font-weight: 900; margin-bottom: 16px; color: #1a1512; z-index: 2; position: relative;}
 .final-cta-section p { font-size: 18px; font-weight: 600; color: #4a433d; margin-bottom: 32px; z-index: 2; position: relative;}
@@ -370,18 +367,26 @@ a {
 /* 11. Footer */
 
 .footer {
-    background-color: #f9f5f0;
-    color: #8c7b6e;
-    padding: 80px 20px;
-    border-top: 2px solid #efeae4;
-    width: 100%;
-    /* scroll-snap-align: start; */
+    scroll-snap-align: end; /* 푸터 바닥을 화면 바닥에 맞춤 */
+    background: #000;
+    padding: 80px 24px;
+    border-top: 1px solid var(--border);
+    /* CTA 섹션과 푸터 사이에 물리적인 간격을 주어 겹쳐 보이지 않게 함 */
+    margin-top: 0; 
 }
+
 .final-cta-section {
-    padding: 100px 0; /* 위아래 여백을 주어 중앙 정렬 효과 */
-    flex: 1; /* 남은 공간을 차지하도록 설정 */
+    scroll-snap-align: start;
+    height: 100vh; /* min-height 대신 height를 써서 화면을 꽉 채우게 강제함 */
     display: flex;
+    flex-direction: column;
+    justify-content: center; /* 내용을 정중앙에 배치 */
     align-items: center;
+    position: relative;
+    /* 다른 섹션들처럼 느껴지도록 아래쪽에 가상의 여백(Safe area) 확보 */
+    padding-bottom: 15vh; 
+    box-sizing: border-box;
+    background-color: var(--bg-dark); /* 배경색을 확실히 줌 */
 }
 
 .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }

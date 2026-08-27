@@ -1,3 +1,6 @@
+<!-- 이용약관이랑 개인정보 보호 하는 거 새 창말고 한 화면에서 처리할 수 있도록 수정
+    질문 더보기 같은 걸로 나누기 위에랑 마찬가지-->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -143,6 +146,20 @@
             html { scroll-snap-type: none; }
             .snap-section { min-height: auto; padding: 80px 0; }
         }
+
+        body.policy-is-open { overflow: hidden; }
+        .policy-panel { position: fixed; inset: 0; z-index: 900; background: #121212; opacity: 0; visibility: hidden; transform: translateX(24px); transition: opacity .28s ease, transform .28s ease, visibility .28s; padding-top: 68px; }
+        .policy-panel.is-open { opacity: 1; visibility: visible; transform: translateX(0); }
+        .policy-panel-bar { height: 60px; display: flex; align-items: center; gap: 20px; max-width: 900px; margin: 0 auto; padding: 0 24px; border-bottom: 1px solid var(--border); }
+        .policy-back { border: 0; background: transparent; color: var(--primary); font: inherit; font-weight: 800; cursor: pointer; padding: 8px 0; }
+        .policy-panel-title { font-size: 18px; font-weight: 800; color: var(--text-main); }
+        .policy-frame { display: block; width: min(900px, 100%); height: calc(100vh - 128px); margin: 0 auto; border: 0; background: #fdfbf9; }
+        .faq-pagination { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 28px auto 0; }
+        .faq-page-btn { width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 50%; background: var(--bg-card); color: var(--primary); font-size: 20px; cursor: pointer; transition: .2s; }
+        .faq-page-btn:hover:not(:disabled) { background: rgba(255,143,107,.12); transform: translateY(-2px); }
+        .faq-page-btn:disabled { opacity: .35; cursor: not-allowed; }
+        .faq-page-status { min-width: 52px; text-align: center; color: var(--text-sub); font-weight: 800; }
+        @media (max-width: 768px) { .policy-panel { padding-top: 58px; } .policy-panel-bar { height: 54px; padding: 0 16px; gap: 12px; } .policy-frame { height: calc(100vh - 112px); } }
     </style>
 </head>
 <body>
@@ -379,6 +396,11 @@
                         <div class="faq-content">네. 사용자가 원할 경우 자신의 기록과 관련된 데이터를 삭제할 수 있도록 제공하는 것을 원칙으로 합니다. 구체적인 삭제 방법과 범위는 서비스의 개인정보처리방침에서 확인할 수 있습니다.</div>
                     </details>
                 </div>
+                <div class="faq-pagination" id="faq-pagination" aria-label="FAQ 페이지 이동">
+                    <button type="button" class="faq-page-btn faq-prev" aria-label="이전 질문 묶음">←</button>
+                    <span class="faq-page-status" aria-live="polite">1 / 5</span>
+                    <button type="button" class="faq-page-btn faq-next" aria-label="다음 질문 묶음">→</button>
+                </div>
             </div>
         </section>
 
@@ -408,8 +430,8 @@
                     </div>
                     <div class="footer-right">
                         <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                            <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">이용약관</a>
-                            <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
+                            <a href="terms.html" data-policy="terms" style="color: inherit; text-decoration: none;">이용약관</a>
+                            <a href="privacy.html" data-policy="privacy" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
                         </div>
                         <p>© 2026 JellyLog. All rights reserved.</p>
                     </div>
@@ -418,6 +440,16 @@
         </div>
     </div>
 
+    <!-- 약관/개인정보를 현재 페이지 안에서 전환해 보여주는 패널 -->
+    <aside class="policy-panel" id="policy-panel" aria-hidden="true" aria-labelledby="policy-panel-title">
+        <div class="policy-panel-bar">
+            <button type="button" class="policy-back" id="policy-back">← 메인으로 돌아가기</button>
+            <span class="policy-panel-title" id="policy-panel-title">정책 문서</span>
+        </div>
+        <iframe class="policy-frame" id="policy-frame" title="정책 문서" loading="lazy"></iframe>
+    </aside>
+
+    <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 1. Reveal Animation
@@ -465,6 +497,9 @@
                 demoActive = true;
                 const input = document.getElementById("demo-typing-input");
                 const reply = document.getElementById("demo-pet-reply");
+                // script.js의 데모 함수와 중복 실행되지 않도록 잠금
+                if (!input || input.dataset.typingStarted === "true") return;
+                input.dataset.typingStarted = "true";
                 const text = "발표할 때 계속 목이 막히는 느낌이었어. 끝나고 나니 온몸에 힘이 다 빠졌어...";
                 let idx = 0;
                 

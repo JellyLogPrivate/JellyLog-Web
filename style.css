@@ -1,5 +1,53 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
+/* 레이어 전체 배경 */
+.full-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212; /* 배경색 통일 */
+    z-index: 1500; /* 헤더(1000)보다 높게, 하지만 헤더를 가릴지 말지는 선택 */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    overflow-y: auto; /* 내용이 길면 스크롤 */
+    padding-top: 100px; /* 헤더 공간 확보 */
+}
+
+/* 활성화 상태 */
+.full-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 닫기 버튼 */
+.overlay-close {
+    position: sticky; /* 스크롤 내려도 보이게 */
+    top: 20px;
+    background: var(--bg-card);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* 이용약관/개인정보 표 스타일 (통일) */
+.policy-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid var(--border);
+}
+.policy-content th, .policy-content td {
+    padding: 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,6 +72,7 @@ body {
     overflow-wrap: anywhere;
     line-break: strict;
 }
+body.policy-is-open { overflow: hidden; }
 
 a {
     color: inherit;
@@ -37,15 +86,15 @@ a {
     width: 100%; /* 스냅 시 가로 폭 꽉 차게 유지 */
 }
 
-/* 🚀 각 챕터가 화면을 다 채우고 가운데 정렬되도록 하는 스냅 클래스 */
+/* 🚀 각 챕터가 화면을 다 채우고 가운데 정렬되도록 하는 스냅 클래스
 .snap-section {
     scroll-snap-align: start;
-    scroll-snap-stop: normal; /* always에서 normal로 변경하여 자연스럽게 통과 허용 */
+    scroll-snap-stop: normal;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 /* 1. Header */
 .header {
@@ -260,10 +309,46 @@ a {
 /* 풀스크린에 맞게 마진 조절 */
 .features-section {
     background: linear-gradient(to bottom, #f5f0eb, #fdfbf9);
-    padding: 120px 0;
+    /* padding: 120px 0; */
     scroll-snap-align: start; 
     min-height: auto; 
     display: block; 
+}
+
+/* 같은 페이지 안에서 전환되는 정책 문서 패널 */
+.policy-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: #fdfbf9;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(24px);
+    transition: opacity .28s ease, transform .28s ease, visibility .28s;
+    padding-top: 68px;
+}
+.policy-panel.is-open { opacity: 1; visibility: visible; transform: translateX(0); }
+.policy-panel-bar {
+    height: 60px; display: flex; align-items: center; gap: 20px;
+    max-width: 900px; margin: 0 auto; padding: 0 24px;
+    border-bottom: 1px solid #efeae4;
+}
+.policy-back { border: 0; background: transparent; color: #b86456; font: inherit; font-weight: 800; cursor: pointer; padding: 8px 0; }
+.policy-panel-title { font-size: 18px; font-weight: 800; color: #1a1512; }
+.policy-frame { display: block; width: min(900px, 100%); height: calc(100vh - 128px); margin: 0 auto; border: 0; background: #fdfbf9; }
+
+/* FAQ는 접히는 목록 대신 질문 묶음 단위로 화면 전환 */
+.faq-pagination { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 28px auto 0; }
+.faq-page-btn { width: 42px; height: 42px; border: 1px solid #e5d9d0; border-radius: 50%; background: #fff; color: #b86456; font-size: 20px; cursor: pointer; transition: .2s; }
+.faq-page-btn:hover:not(:disabled) { background: #faeceb; transform: translateY(-2px); }
+.faq-page-btn:disabled { opacity: .35; cursor: not-allowed; }
+.faq-page-status { min-width: 52px; text-align: center; color: #4a433d; font-weight: 800; }
+
+@media (max-width: 768px) {
+    .policy-panel { padding-top: 58px; }
+    .policy-panel-bar { height: 54px; padding: 0 16px; gap: 12px; }
+    .policy-panel-title { font-size: 16px; }
+    .policy-frame { height: calc(100vh - 112px); }
 }
 .feature-item { display: flex; align-items: center; justify-content: space-between; gap: 60px; margin-bottom: 40px; }
 .feature-item.reverse { flex-direction: row-reverse; }
@@ -431,4 +516,22 @@ a {
 .faq-accordion {
     max-width: 800px; 
     margin: 0 auto;
+}
+
+/* style.css 상단이나 해당 섹션 부분에 추가 */
+.snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh; /* 화면 높이 꽉 채우기 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Feature 섹션에 별도 padding이나 margin이 있다면 제거하세요 */
+.features-section {
+    padding: 0 !important; /* 내부 여백 때문에 밀리는 것 방지 */
 }

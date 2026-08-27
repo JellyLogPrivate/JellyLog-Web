@@ -535,3 +535,17 @@ a {
 .features-section {
     padding: 0 !important; /* 내부 여백 때문에 밀리는 것 방지 */
 }
+
+/* 배포 환경에서 FAQ가 펼쳐져도 하단 내용이 잘리지 않도록 밀도 조정 */
+.faq-section { min-height: auto !important; height: auto !important; justify-content: flex-start !important; padding: 86px 0 64px !important; scroll-snap-align: none !important; }
+.faq-section .section-title { font-size: clamp(25px, 3.5vw, 34px); margin-bottom: 28px; }
+.faq-accordion { max-width: 760px; }
+.faq-item { margin-bottom: 10px; }
+.faq-item summary { padding: 15px 18px; font-size: 15px; }
+.faq-content { padding: 0 18px 16px; font-size: 14px; line-height: 1.55; }
+.faq-pagination { margin-top: 20px; }
+@media (max-width: 768px) {
+    .faq-section { padding: 68px 0 48px !important; }
+    .faq-item summary { padding: 13px 15px; font-size: 14px; }
+    .faq-content { padding: 0 15px 14px; font-size: 13px; }
+}
